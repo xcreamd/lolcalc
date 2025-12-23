@@ -1,0 +1,8 @@
+{
+    "name": "Infinity Edge",
+    "stats": {
+        "AttackDamage": 65,
+        "CriticalStrikeChance": 0.25
+    },
+    "effect_name": "InfinityEdgeEffect"
+}

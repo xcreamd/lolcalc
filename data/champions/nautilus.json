@@ -1,0 +1,85 @@
+{
+  "name": "Nautilus",
+  "auto_attack_strategy": "Default",
+  "stats": {
+    "health": {
+      "base": 646,
+      "growth": 100
+    },
+    "mana": {
+      "base": 400,
+      "growth": 47
+    },
+    "attack_damage": {
+      "base": 61,
+      "growth": 3.3
+    },
+    "attack_speed_ratio": {
+      "base": 0.706,
+      "growth": 0.01
+    },
+    "armor": {
+      "base": 100,
+      "growth": 0
+    },
+    "magic_resist": {
+      "base": 32,
+      "growth": 2.05
+    }
+  },
+  "abilities": {
+    "P": {
+      "name": "Staggering Blow",
+      "type": "PassiveEffect",
+      "effect_name": "NautilusPEffect"
+    },
+    "Q": {
+      "name": "Dredge Line",
+      "type": "Skillshot",
+      "damage_type": "Magic",
+      "base_damage": [
+        60,
+        105,
+        150,
+        195,
+        240
+      ],
+      "ad_ratio": 0.0,
+      "ap_ratio": 0.9,
+      "ap_ratio_type": "total"
+    },
+    "W": {
+      "name": "Titan's Wrath",
+      "type": "Effect",
+      "effect_name": "NautilusWEffect"
+    },
+    "E": {
+      "name": "Riptide",
+      "type": "Skillshot",
+      "damage_type": "Magic",
+      "base_damage": [
+        55,
+        85,
+        115,
+        145,
+        175
+      ],
+      "ad_ratio": 0.0,
+      "ap_ratio": 0.5,
+      "ap_ratio_type": "total"
+    },
+    "R": {
+      "name": "Depth Charge",
+      "type": "Skillshot",
+      "damage_type": "Magic",
+      "base_damage": [
+        150,
+        275,
+        400
+      ],
+      "ad_ratio": 0.0,
+      "ap_ratio": 0.8,
+      "ap_ratio_type": "total"
+    }
+  }
+}
