@@ -132,6 +132,16 @@ void Champion::castAbility(AbilitySlot slot, Champion &target) {
 
   target.takeDamage(finalDamage);
 
+  float omnivamp = getTotalStats().omnivamp;
+  if (omnivamp > 0) {
+    float healAmount = finalDamage * omnivamp;
+    if (healAmount > 0) {
+      heal(healAmount);
+      std::cout << "[Sustain] " << name << " healed for " << healAmount
+                << " HP (Omnivamp)." << std::endl;
+    }
+  }
+
   for (const auto &effect : status->getEffects()) {
     effect->onSpellHit(*this, target);
   }
