@@ -115,6 +115,10 @@ std::vector<Scaling> parseScalings(const nlohmann::json &j) {
         s.statType = Stat::Armor;
       else if (statStr == "MagicResist")
         s.statType = Stat::MagicResist;
+      else if (statStr == "LifeSteal")
+        s.statType = Stat::LifeSteal;
+      else if (statStr == "OmniVamp")
+        s.statType = Stat::OmniVamp;
       else
         continue;
 

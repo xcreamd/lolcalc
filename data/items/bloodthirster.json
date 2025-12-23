@@ -1,0 +1,8 @@
+{
+  "name": "Bloodthirster",
+  "stats": {
+    "AttackDamage": 80,
+    "LifeSteal": 0.15
+  },
+  "effect_name": "BloodthirsterEffect"
+}

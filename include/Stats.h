@@ -33,4 +33,7 @@ struct FinalStats {
   float magicPenetrationFlat = 0.0f;
 
   float movementSpeed = 0.0f;
+
+  float lifeSteal = 0.0f;
+  float omnivamp = 0.0f;
 };

@@ -38,6 +38,7 @@ public:
 
   void addBonusStat(Stat stat, float value);
 
+  void heal(float amount);
   void takeDamage(float damage);
   void consumeMana(float amount);
   void restoreMana(float amount);

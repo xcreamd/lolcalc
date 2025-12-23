@@ -1,10 +1,7 @@
 #include "StatSystem.h"
 #include <iostream>
 
-StatSystem::StatSystem() {
-  // Initialize critical strike damage default to 175%
-  stats[Stat::CriticalStrikeDamage].base = 1.75f;
-}
+StatSystem::StatSystem() { stats[Stat::CriticalStrikeDamage].base = 1.75f; }
 
 void StatSystem::setBase(Stat stat, float value) {
   stats[stat].base = value;
@@ -37,13 +34,9 @@ void StatSystem::clearBonuses() {
     entry.percentBonus = 0.0f;
     entry.multiplier = 0.0f;
   }
-  // Re-apply defaults if necessary (though base is usually persistent)
-  // stats[Stat::CriticalStrikeDamage].base = 1.75f; // Logic choice: keep base,
-  // reset bonus
   isDirty = true;
 }
 
-// LoL's non-linear stat growth formula
 float StatSystem::calculateStatAtLevel(float base, float growth,
                                        int lvl) const {
   if (lvl <= 1)
@@ -57,21 +50,15 @@ void StatSystem::recalculate() {
     StatEntry &e = stats[s];
     float baseVal = calculateStatAtLevel(e.base, e.growth, level);
 
-    // Special Logic for Attack Speed
-    // In LoL: Total AS = Base AS * (1 + Growth% + Bonus%)
     if (s == Stat::AttackSpeed) {
-      // Base here refers to the "AS Ratio"
       float baseRatio = e.base;
 
-      // Calculate the percentage bonus from growth
       float growthBonus =
           e.growth * (level - 1) * (0.7025f + 0.0175f * (level - 1));
 
-      // e.flatBonus stores the sum of item/rune AS% (e.g., 0.35 for 35%)
       return baseRatio * (1.0f + growthBonus + e.flatBonus);
     }
 
-    // Standard Stat Logic: (Base_at_Level + Flat_Bonus) * (1 + Multiplier)
     return (baseVal + e.flatBonus) * (1.0f + e.multiplier);
   };
 
@@ -83,13 +70,11 @@ void StatSystem::recalculate() {
   cachedFinalStats.magicResist = getVal(Stat::MagicResist);
   cachedFinalStats.attackSpeed = getVal(Stat::AttackSpeed);
 
-  // NEW: Ability Haste
   cachedFinalStats.abilityHaste = getVal(Stat::AbilityHaste);
 
   cachedFinalStats.criticalStrikeChance = getVal(Stat::CriticalStrikeChance);
   cachedFinalStats.criticalStrikeDamage = getVal(Stat::CriticalStrikeDamage);
 
-  // Advanced Mitigation Stats
   cachedFinalStats.armorPenetration = getVal(Stat::ArmorPenetration);
   cachedFinalStats.lethality = getVal(Stat::Lethality);
   cachedFinalStats.magicPenetrationPercent =
@@ -97,6 +82,8 @@ void StatSystem::recalculate() {
   cachedFinalStats.magicPenetrationFlat = getVal(Stat::MagicPenetrationFlat);
 
   cachedFinalStats.movementSpeed = getVal(Stat::MovementSpeed);
+  cachedFinalStats.lifeSteal = getVal(Stat::LifeSteal);
+  cachedFinalStats.omnivamp = getVal(Stat::OmniVamp);
 
   isDirty = false;
 }
@@ -136,6 +123,10 @@ float StatSystem::getTotal(Stat stat) {
     return cachedFinalStats.magicPenetrationFlat;
   case Stat::MovementSpeed:
     return cachedFinalStats.movementSpeed;
+  case Stat::LifeSteal:
+    return cachedFinalStats.lifeSteal;
+  case Stat::OmniVamp:
+    return cachedFinalStats.omnivamp;
   }
   return 0.0f;
 }
@@ -150,8 +141,6 @@ float StatSystem::getBase(Stat stat) const {
   if (stats.count(stat) == 0)
     return 0.0f;
 
-  // If requesting Attack Speed Base, return the ratio, otherwise calculate at
-  // level
   if (stat == Stat::AttackSpeed)
     return stats.at(stat).base;
 

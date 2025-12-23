@@ -15,7 +15,9 @@ enum class Stat {
   MagicPenetrationPercent,
   MagicPenetrationFlat,
   MovementSpeed,
-  AbilityHaste
+  AbilityHaste,
+  LifeSteal,
+  OmniVamp
 };
 
 enum class DamageType { Physical, Magic, True };

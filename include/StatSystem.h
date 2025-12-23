@@ -14,7 +14,6 @@ public:
   void addBonus(Stat stat, float value);
   void addMultiplier(Stat stat, float percent);
 
-  // New method required by Champion.cpp
   void clearBonuses();
 
   float getTotal(Stat stat);

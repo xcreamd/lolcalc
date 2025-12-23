@@ -88,5 +88,26 @@ float DefaultAutoAttackStrategy::execute(DamageContext &ctx) {
 
   // --- 7. Apply Damage ---
   target->takeDamage(ctx.finalPostMitigationDamage);
+
+  // owner->heal(finalPhysical * ownerStats.lifeSteal);
+  // owner->heal((finalPhysical + finalMagic) * ownerStats.omnivamp);
+  float totalLifeSteal = owner->getTotalStats().lifeSteal;
+  float totalOmnivamp = owner->getTotalStats().omnivamp;
+  float healAmount = 0.0f;
+
+  if (totalLifeSteal > 0) {
+    // Life Steal applies to physical damage of AA (Base + Physical On-Hits)
+    healAmount += finalPhysical * totalLifeSteal;
+  }
+
+  if (totalOmnivamp > 0) {
+    healAmount += ctx.finalPostMitigationDamage * totalOmnivamp;
+  }
+
+  if (healAmount > 0) {
+    owner->heal(healAmount);
+    std::cout << "[Sustain] " << owner->getName() << " healed for "
+              << healAmount << " HP." << std::endl;
+  }
   return ctx.finalPostMitigationDamage;
 }

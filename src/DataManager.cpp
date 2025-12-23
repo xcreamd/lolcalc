@@ -93,6 +93,15 @@ static std::vector<Scaling> parseScalings(const nlohmann::json &j) {
         s.statType = Stat::Armor;
       else if (statStr == "MagicResist")
         s.statType = Stat::MagicResist;
+      else if (statStr == "LifeSteal")
+        s.statType = Stat::LifeSteal;
+      else if (statStr == "OmniVamp")
+        s.statType = Stat::OmniVamp;
+      else if (statStr == "Lethality")
+        s.statType = Stat::Lethality;
+      else if (statStr == "ArmorPenetration")
+        s.statType = Stat::ArmorPenetration;
+
       else
         continue;
 
@@ -270,8 +279,14 @@ void DataManager::parseItem(const nlohmann::json &j) {
         bp.stats[Stat::CriticalStrikeChance] = val;
       else if (key == "MovementSpeed")
         bp.stats[Stat::MovementSpeed] = val;
-      else if (key == "LifeSteal") {
-      }
+      else if (key == "LifeSteal")
+        bp.stats[Stat::LifeSteal] = val;
+      else if (key == "OmniVamp")
+        bp.stats[Stat::OmniVamp] = val;
+      else if (key == "Lethality")
+        bp.stats[Stat::Lethality] = val;
+      else if (key == "ArmorPenetration")
+        bp.stats[Stat::ArmorPenetration] = val;
     }
   }
 

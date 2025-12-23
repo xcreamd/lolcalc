@@ -48,6 +48,8 @@ void Champion::addBonusStat(Stat stat, float value) {
   stats->addBonusStat(stat, value);
 }
 
+void Champion::heal(float amount) { health->heal(amount); }
+
 void Champion::takeDamage(float damage) {
   float modifiedDamage = damage;
   for (const auto &effect : status->getEffects()) {
