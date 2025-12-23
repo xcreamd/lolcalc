@@ -34,7 +34,7 @@ public:
 
   virtual bool isActive() const { return true; }
 
-  virtual std::shared_ptr<Effect> clone() const { return nullptr; }
+  virtual std::unique_ptr<Effect> clone() const { return nullptr; }
 };
 
 class TimedEffect : public Effect {
@@ -87,8 +87,8 @@ public:
 
   void tick(Champion &target, float deltaTime) override;
 
-  std::shared_ptr<Effect> clone() const override {
-    return std::make_shared<DamageOverTimeEffect>(
+  std::unique_ptr<Effect> clone() const override {
+    return std::make_unique<DamageOverTimeEffect>(
         name, duration, damagePerTick, tickInterval, damageType, source);
   }
 };

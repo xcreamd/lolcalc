@@ -1,15 +1,13 @@
 #include "Ability.h"
 #include "Champion.h"
-#include <cmath> // for std::max
+#include <cmath>
 #include <iostream>
 
-// Constructor for effect-only abilities
 Ability::Ability(const std::string &name, std::shared_ptr<Effect> effect,
                  const std::vector<float> &cooldowns,
                  const std::vector<float> &costs)
     : name(name), effect(effect), baseCooldowns(cooldowns), baseCosts(costs) {}
 
-// Constructor for damage/skillshot abilities
 Ability::Ability(const std::string &name, const std::vector<DamagePart> &parts,
                  DamageType type, const std::vector<float> &cooldowns,
                  const std::vector<float> &costs,
@@ -19,7 +17,6 @@ Ability::Ability(const std::string &name, const std::vector<DamagePart> &parts,
       baseCooldowns(cooldowns), baseCosts(costs), conditions(conditions),
       statusToApply(status), statusDuration(statusDuration) {}
 
-// Helper: Calculate Base Stat at a specific level
 static float getBaseStatValue(const BaseStats &base, Stat stat, int level) {
   if (level <= 1) {
     switch (stat) {
@@ -139,18 +136,15 @@ float Ability::calculateDamage(int rank, const FinalStats &totalStats,
   return totalRawDamage;
 }
 
-// --- CORE LOGIC: Time & Resources ---
-
 bool Ability::canCast(const FinalStats &ownerStats, float currentMana,
                       int rank) const {
-  // 1. Check Cooldown
+
   if (currentCooldown > 0) {
     std::cout << "[Check] Ability '" << name << "' is on cooldown ("
               << currentCooldown << "s left)." << std::endl;
     return false;
   }
 
-  // 2. Check Resource Cost
   float cost = getResourceCost(rank);
   if (currentMana < cost) {
     std::cout << "[Check] Not enough mana for '" << name << "' (" << currentMana
@@ -170,7 +164,6 @@ void Ability::putOnCooldown(const FinalStats &ownerStats, int rank) {
   float baseCD = baseCooldowns[rank - 1];
   float haste = ownerStats.abilityHaste;
 
-  // LoL Ability Haste Formula: Cooldown = Base / (1 + (Haste / 100))
   currentCooldown = baseCD / (1.0f + (haste / 100.0f));
 
   std::cout << "[Cooldown] '" << name << "' set to " << currentCooldown

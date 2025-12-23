@@ -21,5 +21,5 @@ public:
 
 private:
   static Item createItem(const std::string &itemName);
-  static std::shared_ptr<Effect> createEffect(const std::string &effectName);
+  static std::unique_ptr<Effect> createEffect(const std::string &effectName);
 };

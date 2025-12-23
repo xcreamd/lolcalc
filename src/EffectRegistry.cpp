@@ -1,4 +1,5 @@
 #include "EffectRegistry.h"
+#include <memory>
 
 EffectRegistry &EffectRegistry::getInstance() {
   static EffectRegistry instance;
@@ -10,7 +11,7 @@ void EffectRegistry::registerEffect(const std::string &name,
   registry[name] = creator;
 }
 
-std::shared_ptr<Effect> EffectRegistry::createEffect(const std::string &name) {
+std::unique_ptr<Effect> EffectRegistry::createEffect(const std::string &name) {
   if (registry.count(name)) {
     return registry[name](); // Call the creation function
   }

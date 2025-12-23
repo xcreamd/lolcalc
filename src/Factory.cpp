@@ -308,6 +308,6 @@ Item Factory::createItem(const std::string &itemName) {
   return Item(itemName, bp->stats, effect);
 }
 
-std::shared_ptr<Effect> Factory::createEffect(const std::string &effectName) {
+std::unique_ptr<Effect> Factory::createEffect(const std::string &effectName) {
   return nullptr;
 }

@@ -6,14 +6,14 @@
 #include <string>
 
 // Function type for creating an effect
-using EffectCreator = std::function<std::shared_ptr<Effect>()>;
+using EffectCreator = std::function<std::unique_ptr<Effect>()>;
 
 class EffectRegistry {
 public:
   static EffectRegistry &getInstance();
 
   void registerEffect(const std::string &name, EffectCreator creator);
-  std::shared_ptr<Effect> createEffect(const std::string &name);
+  std::unique_ptr<Effect> createEffect(const std::string &name);
 
 private:
   EffectRegistry() = default;
@@ -26,6 +26,6 @@ public:
   EffectRegister(const std::string &name) {
     EffectRegistry::getInstance().registerEffect(
         name,
-        []() -> std::shared_ptr<Effect> { return std::make_shared<T>(); });
+        []() -> std::unique_ptr<Effect> { return std::make_unique<T>(); });
   }
 };
