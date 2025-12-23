@@ -1,0 +1,29 @@
+{
+  "name": "Liandry's Torment",
+  "stats": {
+    "AbilityPower": 60,
+    "Health": 300
+  },
+  "passive_rules": [
+    {
+      "trigger": "OnSpellHit",
+      "actions": [
+        {
+          "type": "ApplyDebuff",
+          "debuff_name": "LiandryBurn",
+          "duration": 3.0
+        }
+      ]
+    }
+  ],
+  "definitions": {
+    "LiandryBurn": {
+      "type": "DoT",
+      "damage_type": "Magic",
+      "tick_interval": 1.0,
+      "scaling": {
+        "target_max_health": 0.02
+      }
+    }
+  }
+}

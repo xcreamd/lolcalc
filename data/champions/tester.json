@@ -1,0 +1,48 @@
+{
+  "name": "Tester",
+  "auto_attack_strategy": "Default",
+  "stats": {
+    "health": {
+      "base": 2000,
+      "growth": 0
+    },
+    "mana": {
+      "base": 1000,
+      "growth": 0
+    },
+    "attack_damage": {
+      "base": 100,
+      "growth": 0
+    },
+    "attack_speed_ratio": {
+      "base": 0.625,
+      "growth": 0
+    },
+    "armor": {
+      "base": 50,
+      "growth": 0
+    },
+    "magic_resist": {
+      "base": 30,
+      "growth": 0
+    }
+  },
+  "abilities": {
+    "Q": {
+      "name": "Stat Check",
+      "type": "Skillshot",
+      "damage_type": "True",
+      "base_damage": [
+        0
+      ],
+      "scalings": [
+        {
+          "stat": "Mana",
+          "ratio": 0.10,
+          "type": "total"
+        }
+      ],
+      "target_max_health_ratio": 0.10
+    }
+  }
+}

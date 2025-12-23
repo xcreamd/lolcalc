@@ -1,0 +1,31 @@
+{
+  "name": "Dummy",
+  "auto_attack_strategy": "Default",
+  "stats": {
+    "health": {
+      "base": 10000,
+      "growth": 0
+    },
+    "mana": {
+      "base": 0,
+      "growth": 0
+    },
+    "attack_damage": {
+      "base": 0,
+      "growth": 0
+    },
+    "attack_speed_ratio": {
+      "base": 0.625,
+      "growth": 0
+    },
+    "armor": {
+      "base": 0,
+      "growth": 0
+    },
+    "magic_resist": {
+      "base": 0,
+      "growth": 0
+    }
+  },
+  "abilities": {}
+}

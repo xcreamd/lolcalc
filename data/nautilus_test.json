@@ -1,0 +1,12 @@
+{
+    "champion": "Nautilus",
+    "level": 16,
+    "ability_ranks": {
+        "Q": 5,
+        "W": 5,
+        "E": 5,
+        "R": 3
+    },
+    "items": [
+    ]
+}
